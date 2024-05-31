@@ -1,0 +1,204 @@
+what is NOde.js?
+javascript on your backend servers
+Before node javascript was mainly a front-end thing
+because node offers a lot more than executing javascript on the server
+In fact , the execution of javascript on the server is not done by node at all.
+It's done with virtual machine like v8
+node it's the one who instructs a VM like V8 to execute your javascript
+node is better defined as a wrapper around a VM like V8
+because that's the default VM in node,but you can totally run node with other VMs if we need to
+so when you write javascript for node , node will pass your javascript to V8
+V8 will execute the javascript and tell node what the result is
+node will make the results available to you
+besides the fact that enables us to exceute javascript on a server'
+which is done through seamless integration with V8 
+A wrapper around V8 with built in modules providing rich features
+through easy to use asynchronous APIs
+
+why node?
+
+wrapper around V8(exceute Javascript)
+Built-in modules(fs,http,crypto,zip,..)
+Asynchronous API (no threads)
+c++ addons
+Debugger and other utilites
+NPM 
+Modules dependency manager
+
+Npm is basically the world's largest collection of free and reusable code
+node was the enable here because npm is part of NOde.
+Npm is basically the world's largest collection of free and reusable code
+npm is a reliable package manager.
+
+Node has reliable module dependency managers(CommonJs modules and ECMA SCript modules)
+ we don havw in the javascript world
+jaavscript today what know as ECMA Script module
+It is widely used even for javascript that gets executed in the browser because node has many tools
+to bridge gap between in CommonJS and what browsers can work with today.
+
+For coomonjs modules that is basicaly the require function in node combined with the module object'For ECMAScript
+module dependencies are meanaged with the import/export javascript syntax
+
+fancy fridge monitor that happens to run on javascript 
+you can use Node for the tools to package.to organize to manage dependencies
+and to bundle your code and ship to your fridge
+
+Node also is not just for hosting javascript servers but it's also a very good option to do so because of 
+its non blockin asynchronous nature which you can use without dealing with threads
+
+Node comes with first class support and easy APIs  for many asynchronous operations like reading or writing files
+consuming data over the network ,and even compressing and encrypting data.
+
+youcan do all these operations in node asynchronously without blocking the main execution thread
+
+this work great with V8 because V8 itself is single threaded and this is true for node and browsers
+you only get a single precious thread to work with and its very important to not block it
+
+For example , in your browser if youre website blocks that single thread for,
+say 2 seconds , the user cannot scroll up and down during these 2 seconds
+
+In Node , if an incoming HTTP connection to your web server
+was handled synchronously rather than that asychronously
+taht will block single thread
+and your whole web server cannot handle any other connection while the synchrous operation is active
+and that's a big deal
+node asynchronous APIs also work great for cloud applications in general 
+because a lot of these operations are asynchronous by nature.
+using node  you are committing to the flexible javascript language
+which is used on every website today.
+use javascript in the browser and use it for the back end as well
+
+recipe --> program 
+and cook is computer
+you can use ready items and tools like the cake mix that you can use to make cup cakes
+and that specially shaped pan that makes it easier to create cupcakes
+specially shaped pan that makes it easier to ceeate cup cakes  when compare to coding
+you can think of these ready items and tools receipes to including using package of code written by others in your own code
+node and its powerful npm package  manager
+npm is a place where you csn download code written by others
+you can think of npm as the store where you purchase the ready items and tools
+you just bring them to project with a simple command
+node,js is like the kitchen itself
+It allows you to execute lines in your receipes by using built-in modules
+like your oven and sink
+and just because you have these built-in modules in your kitchen
+that doesn't mean you have food ready to consume
+node is your kitchen by itself ,its not enough
+but it does make your task to write useful code much easier
+
+call back
+
+A function that Node will "call back" a later point in time of a program
+This is done through an synchrinous method
+here is a simple call back function, which usally receives data as its argument
+
+function cb(data) {
+//do something with data
+}
+someAsyncMethod(cb);
+and we just pass its refrence here to some asynchronous method
+and that asynchronous method will get the callback invoked when the data is ready
+I have another analogy for you about callbacks.
+when you order a drink from the starbucks in the store
+they will take your order and your name
+and tell you to  wait  to be called when your order is ready.
+After a while they call your name and give you what you asked for
+that name you gave them is the callback function here
+they called it with the object that you requested ,the drink
+
+function Samer(readyLatte) {
+//drink readyLatte..
+}
+starbucks.makeMeALatte(Samer);
+The callback function is the name you give during your starbucks order.
+It's a function that'll be called with somedata,
+which is your ready drink
+when place your order that's an asynchronous method
+because you order will take some time , and they don't want to block the order and queue while your order is getting prepared
+That's yy call you back
+and that's the pattern of callback functions in Node
+now modern javascript in modern node 
+started adoptinhg another pattern for asynchronous programming
+which we called promises
+And ia promise is a little bit different that a callback
+To understand promises , imagine that you ask someone to give you something 
+but they give you something else
+call it a mystery object
+they promise you that this mystery object might eventually turn into the one of two possible forms
+one form is associated with success, and the other with failure
+
+I promise you a chick 
+const egg = chicken.makeChick(); //It's a promise
+egg
+.then(chick=>raiseChick()) //success outcome
+.catch(badEgg => throw BadEgg) //Fail outcome
+
+function today() 
+{
+return new Date();
+}
+today()
+
+require()  --> node's internal
+the require function is what you use to manage the dependencies of your programs
+whether this library is a built-in one like http
+or it is third party installed 
+you can't use any dependencies without requiring them first 
+const http = require("http")
+const server = http.createServer((req,res) => {
+res.end("hello world\n"); --> write data and end connection
+})
+server.listen(4242,() => {
+console.log('server is running...');
+});
+
+we can use .mjs extension --> without using ecma script
+we shouldn't use require we use import method 
+import {createServer} from 'http'
+or we use .js --> and we use ECMA script
+
+working with timers --> setTimeout and setInterval
+popular global functions in a browser are the timer functions like setTimeout and setIntervals
+node.js  has an API for these functions as well and it exactly matches the browser's API 
+these timer functions can be used to delay or repeat the execution of other functions
+which they recieve as arguments
+this code uses setTimeout to delay the printing the greeting message by 4 seconds
+the second argument to setTimeout is the delay in milliseconds
+
+setTimeout(
+() => {
+console.log('hello after 4 seconds')
+},
+4*1000
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
