@@ -172,7 +172,98 @@ console.log('hello after 4 seconds')
 4*1000
 );
 
-hello
+const func = () => {
+console.log("hello after 4 seconds");
+};
+
+setTimeout(func,4*1000);
+
+const rocks = who => {
+console.log(who + ' rocks);
+};
+setTimeout(rocks,2*1000,"Pluralsight");
+
+pluralsight rocks
+
+const theOneFunc = delay => {
+console.log("hello after " + delay + "seconds");
+};
+setTimeout(theOneFunc,4*1000,4);
+setTimeout(theOneFunc,8*1000,8);
+
+
+setInterval --> this code will print its message every 3 seconds
+setInterval(
+() => console.log('hello every 3 seconds"),3000);
+
+we can cancel the time --> clearTimeout(timerId);
+const timerId = setTimeout(
+() => console.log("you will not see this one!)
+,0);
+clearTimeout(timerId); --> we can also achieve with --> setImmediate
+clearTimeout(timerId);
+//clearInterval
+//clearImmediate
+
+print the message "hello world"
+--every second but only 5 times
+print done and exit
+
+
+let counter = 0;
+const intervalid = setInterval(() => {
+console.log("hello world");
+counter += 1;
+
+if(counter == 5) {
+console.log("done");
+clearInterval(intervalid);
+}
+},1000);
+
+process.stdin.on('readable',() => {
+const chunk = process.stdin.read();
+if(chunk !== null) {
+process.stdout.write(chunk);
+}
+});
+
+process learn clearly
+
+modern javascript
+
+variables and Block Scopes
+
+javascript is recommened to use let instead of var
+
+reference is maintained const cannot be changed
+
+however ,placing an array or object in a const is a different story
+
+const numbers = [2,4,6]
+const person = {
+firstName: 'john',
+lastName: 'Doe'
+};
+the const will guarantee that the variable is pointing to the same
+but the content of the array or object can still mutated
+//Object.freeze()
+to accomplish --> javascript offers a freeze method
+but it only freezes first level of the object
+if you have nested object that nested would not freeze
+
+so value did not accidently change use const for variables and functions
+const square = (a) => {
+return a*a;
+}
+
+
+
+
+
+
+
+
 
 
 
