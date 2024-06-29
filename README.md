@@ -965,6 +965,465 @@ $ node readline_demo.js
 What do you think of Node.js? good
 Thank you for your valuable feedback: good
 
+Packages are collection of various modules.
+► Packages that are stored in NPM are called 
+third party packages.
+► These type of modules are developed by 
+ others and we can use that in our project.
+► Third party modules can be install inside the 
+project folder.
+npm install PACKAGE_NAME
+► Example :To install one of the popular 
+packages gulp
+ npm install gulp
+► Creates folder node_modules where all 
+ packages are installed   ---->  third party
+
+Include bare minimum functionalities of Node.js.
+► The core modules are defined in node's "lib" 
+folder.
+► Node has several modules compiled into the 
+binary and load automatically when Node.js 
+process starts. .
+► Core modules are loaded by passing name to 
+require().
+► Example : file system – require(‘fs’) --> core
+
+local
+ Modules created locally in Node.js 
+application.
+► Include different functionalities of 
+application in separate files and 
+folders.
+► It can also be packaged and 
+distribute it via NPM, so that 
+Node.js community can use it.
+
+modules --> 1) core
+            2) third party
+            3)local
+            
+Core Modules
+http --> http module includes classes,methods and events to create Node.js 
+  http Node.js server
+url --> url module includes for url resolution and parsing
+querystring --> queryString module includes methods to deal with query string
+path --> path module include methods to deal with file paths.
+fs --> fs module includes classes,methods and events to work with the file I/o
+util --> util module includes utility functions useful for programmers
+buffer --> The buffer module provides a way of handling streams of binary data.
+OS --> the os module provides a number of operating system-related utility methods
+cluster --> the cluster module provides a way of creating child processes that runs simultaneously 
+
+export functionalities of one file
+
+express --> Express.js, a Sinatra-inspired web development framework for Node.js, and the de-facto standard for the majority of Node.js applications out 
+there today.
+
+hapi --> A very modular and simple to use configuration-centric framework for 
+building web and services applications
+socket.io --> Server-side component of the two most common websockets 
+components out there today
+pug (formerly Jade)  -- • One of the popular templating engines, inspired by HAML, a default in 
+Express.js
+mongo -- MongoDB wrappers to provide the API for MongoDB object databases in 
+Node.js
+• A full featured Promises/A+ implementation with exceptionally good 
+performance
+
+File System module
+Node.js includes fs module to access physical file system. The fs module is responsible for all the 
+asynchronous or synchronous file I/O operations.
+► The asynchronous form always takes a completion callback as its last argument. The arguments passed to the completion callback depend on the method, but the first argument is always reserved for an exception.
+► When using the synchronous form any exceptions are immediately thrown. Exceptions may be handled using try/catch, or they may be allowed to bubble up.
+Export functuinalities of one file
+exports.myText = 'This text was exported from myModule'
+
+--> Imports other functionality
+var mymodule = require('./my-module.js');
+console.log('text from module:',myModule.myText);
+
+writing to a file
+var fs = require('fs')
+var myString = '{"name":"Modern Web Academy"}';
+fs.writeFile('myFile.json',myString);
+var actualObject = {
+name: 'Modern web Academy'
+};
+fs.writeFile('myProcessedFile.json',JSON.stringify(actualObject));
+
+Reading from File
+
+data1.json --> {
+                "name":"Modern web Academy"
+                }
+reading Json from file in two ways
+
+var fs = require('fs')
+var data = require('./data1.json')
+console.log(data.name)
+
+fs.readFile('./data1.json','utf-8',function(err,data) {
+data = JSON.parse(data);
+console.log(data.name);
+});
+
+path Module -->
+The path module provides utilities for working with file and directory paths.
+The key motivation for using 'path' module is to remove in
+consistencies in handling file system paths.
+Almost all these methods perform only string transformations.
+
+
+Example to illustrate use of path function
+var path = require('path')
+var result = "";
+result += path.normalize('foo/bar//baz/asdf/quux/..');
+result+= path.normalize('/foo/bar//baz/asdf/quux/..'); 
+result+="\n" + path.join('/foo', 'bar', 'baz/asdf', 'quux', '..'); 
+result+="\n"+path.resolve('foo/bar', '/tmp/file/', '..', 'a/../subfile'); 
+console.log(result);
+
+$ node path_demo.js
+\foo\bar\baz\asdf
+\foo\bar\baz\asdf
+C:\tmp\subfile
+
+Buffer module
+
+JavaScript language had no mechanism for reading or manipulating streams of binary data.
+► When dealing with TCP streams or the file system, it's necessary to handle octet streams.
+► The Buffer class was introduced as part of the Node.js API to make it possible to interact with 
+octet streams in the context of things like TCP streams and file system operations.
+► A buffer is a region of a physical memory storage used to temporarily store data while it is 
+being moved from one place to another.
+► In node, each buffer corresponds to some raw memory allocated outside V8. 
+►A buffer acts like an array of integers, but cannot be resized.
+Example to 
+illustrate 
+creating a 
+buffer object 
+and use of 
+methods
+ --->  buf = new Buffer(10); 
+buf.write("Accenture", 0, "ascii");
+console.log(buf.toString('base64'));
+buf = buf.slice(0,5); 
+console.log(buf.toString('utf8'));
+
+$ node buffer.js
+QWNjZW50dXJlAA==
+Accen
+
+
+Util module
+The util module contains a number of useful functions that are 
+used for general purpose.
+Utility Library help convert and validate format of value.
+
+var util = require('util'); 
+console.log(util.format('%s:%s', 'Name', 'Accenture', 'Solutions')); 
+console.log(util.format('{%j:%j}', 'Name', 'Accenture')); 
+console.log(util.isArray([])); 
+console.log(util.isArray(new Array));
+console.log(util.isArray({})); 
+console.log(util.isDate(new Date()))
+output:
+$ node util.js
+Name:Accenture
+Solutions
+{"Name":"Accenture"}
+true
+true
+false
+true
+
+OS module
+The os module provides a number of operating system-related utility method . 
+It also provides information about the computer's operating system
+
+var os = require('os'); 
+console.log(os.hostname()); 
+console.log(os.type()); 
+console.log(os.platform()); 
+console.log(os.arch()); 
+console.log(os.release()); 
+console.log('percentage Memory consumed '+(100*(1 -
+os.freemem()/ os.totalmem())))
+
+
+cluster module 
+A single instance of Node.js runs in a single thread. 
+►To take advantage of multi-core systems, the user will sometimes want to launch a 
+cluster of Node.js processes to handle the load.
+►The cluster module allows easy creation of child processes that all share server ports
+
+var cluster = require('cluster'); 
+if (cluster.isMaster)
+ {
+ var numCPUs = require('os').cpus().length; 
+ for (var i = 0; i < numCPUs; i++) { 
+ cluster.fork();
+ } 
+ Object.keys(cluster.workers).forEach(function(id) {
+ console.log(cluster.workers[id].process.pid); 
+ });
+}
+
+ node Cluster.js
+100644
+78400
+107528
+107612
+Creating a 
+child process 
+based on 
+number of 
+logical core 
+of machine
+
+Publishing a Package
+
+This file is used to give information to npm that 
+allows it to identify the project as well as handle the 
+project's dependencies. 
+► It can also contain other metadata such as a project 
+description, the version of the project in a particular 
+distribution, license information, even configuration 
+data - all of which can be vital to both npm and to 
+the end users of the package. 
+► The package.json file is normally located at the root 
+directory of a Node.js project.
+► It makes build reproducible, which means that 
+it's much easier to share with other developers.
+► Package.json file can be created by npm init
+
+Publishing the modules
+
+User login
+To publish, user must 
+be on the npm
+registry.
+• create it with npm
+adduser . 
+• If created one on the 
+site, use npm login to 
+store the credentials 
+on the client.
+
+
+node.js pplication runs on single thread
+Simple or complex functionality organized in a single or 
+multiple JavaScript files which can be reused throughout 
+Node.js application is called  Module
+Third-party packages can be install/update/delete using Node Package Manage
+s module provides both synchronous as well as 
+asynchronous method- true
+
+Module Summary
+Here are some key points to take away from this module:
+• Node.js is an open source, cross-platform built on Chrome’s JavaScript 
+runtime for fast and scalable server-side and networking applications.
+• V8 JavaScript runtime, it enables event-driven programming to the web 
+servers through super-fast JavaScript interpreter that runs in the 
+Chrome browser.
+• Node.js is an asynchronous, event-driven engine where the application 
+makes a request and then continues working on other useful tasks 
+rather than stalling while it waits for a response. 
+• NodeJS has number of modules that provides features essential for 
+implementing web applications – including networking protocols such 
+as HTTP, third party modules, including the MongoDB driver, can be 
+installed, using the npm tool.
+• NPM makes it easy for JavaScript developers to share and reuse code, 
+and it makes it easy to update the code that we are sharing.
+
+Create a node web server using HTTP Module
+• Handle the request-response cycle in a web application
+
+Introduction to Web Server
+
+A web server is a computer system that processes requests via HTTP and 
+serves the files that form Web pages to users, in response to their requests
+It usually delivers HTML documents along with images, style sheets, 
+and scripts
+It uses HTTP protocol to distribute information on the World 
+Wide Web
+
+It supports server-side programming using scripting languages to 
+handle the HTTP request-response cycle
+
+Every Web server has an IP address and possibly a domain name
+
+Http core module
+Creating a Web Server using Node
+
+Node.js provides http module to 
+create a simple HTTP server.
+Node.js was created specifically 
+to make scalable server-side and 
+networking application
+HTTP is a stateless data transfer 
+protocol built upon a 
+request/response model
+Clients make requests to servers, 
+which then return a respons
+Ships with well-tested 
+functionality to handle 
+network connections 
+effectively
+Hence community can build 
+full-fetched application servers
+
+Code to create a Web Server
+var http = require('http');
+var server = http.createServer(
+(request,response) => {
+response.writeHead(200,{'Content-type':'text/plian'});
+response.write('hello Node JS Server Response");
+response.end();
+});
+server.listen(7000,()=> console.log('server listening at port 7000'));
+
+HTTP API
+
+server = 
+http.createServer([requestListener]); --> returns a web server object.
+The request listener is a function  which is automatically added to the 'request' event 
+server.listen(port, [hostname], [backlog], 
+[callback]);  --> begin accepting connections on specified port and hostname
+server.close([callback]); --Stops the server from accepting new connections.
+response.write(chunk, [encoding])--This sends a chunk of the response body. If this method is 
+called and response.writeHead() has not been called, it will 
+switch to implicit header mode and flush the implicit 
+headers.
+response.writeHead(statusCode[, 
+statusMessage][, headers])--Sends a response header to the request
+response.end([data], [encoding])  -- This method signals to the server that all of the response 
+headers and body have been sent; that server should 
+consider this message complete. The method, 
+response.end(), MUST be called on each response.
+
+var http = require('http');
+var server = http.createServer( (request,response)=>{
+console.log(request.url);
+ if(request.url =='/’)
+ { response.write('<h1>Hello from Server</h1>');
+ response.end();
+ 
+}
+ else if(request.url=="/contact")
+ { response.write('<h1>Hello from Server
+-
+ Contact Page</h1>');
+ response.end();
+ 
+}
+ else
+ { response.write("Invalid URL");
+ response.end();
+ 
+}
+ });
+server.listen(3000, ()=>console.log("Server listening on 3000"));
+
+Which of the following core modules is used 
+to create a web server in Node.js? --> http
+
+2. Which of the below methods must be called on every 
+response---end
+
+
+MODULE OBJECTIVES
+At the end of this module, you should be able to:
+Copyright © 2020 Accenture. All rights reserved.
+• Use Express framework for creating web applications
+• Create robust APIs quickly using Express
+• Write and use middleware in an Express app
+• Handle AJAX request from an Angular application
+
+ExpressJS
+1)A fast, minimal, popular 
+unopinionated web framework 
+for Node.js
+2)Provides a robust set of 
+features for web and mobile 
+applications
+3)It’s open source, with more than 
+100 contributors, and is actively 
+developed and supported.
+4)Provides a myriad of HTTP 
+utility methods and middleware 
+for creating a robust API quickly 
+and easily.
+5)Provides a myriad of HTTP 
+utility methods and middleware 
+for creating a robust API quickly 
+and easily
+Provides a myriad of HTTP 
+utility methods and middleware 
+for creating a robust API quickly 
+and easily
+
+Features of Express
+Route management
+• It makes it easy to define routes (URL endpoints) that tie directly to the Node.js script 
+functionality on the server.
+Error handling
+• It provides built-in error handling for “document not found” and other errors.
+Easy integration
+• An Express server can easily be implemented behind an existing reverse proxy system, 
+such as Nginx to easily integrate it into existing secured system.
+Cookies
+• Express provides easy cookie management
+Session and cache management
+• It also enables session management and cache management
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
 
 
 
