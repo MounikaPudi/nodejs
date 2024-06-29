@@ -753,6 +753,246 @@ return num1+num2+num3;
 console.log((...params));
 
 
+Understand Node.js as a server-side JavaScript runtime
+List the features of Nodejs
+
+javascript runtime for high-performance , low latency applications,powering 
+everything from enterprise applications , robots ,API engines ,cloud stacks ,
+IoT,and mobile websites
+
+It uses an event-driven , non-blocking I/O  model it lightweight ,effecient and highly performant under extreme load
+
+Reasons to use NODEJs
+
+it is very lightweight and fast 
+fast implementation
+Lots of modules available for free
+Good fit for real-time applications
+javascript end to end
+Event-driven scalability
+Extensibility
+Works well NOSQL
+
+
+How the single threaded non blocking IO model works in NodeJS ?
+Last Updated : 05 Feb, 2021
+Node.js is a JavaScript runtime environment that runs on the Chrome V8 engine and is used for server-side scripting. It takes requests from users, processes those requests, and returns responses to the corresponding users.
+
+Some important Node.js features are:
+
+It is based on single-threaded architecture: Since node.js gets multiple requests from multiple users it executes one command at a time. Due to this it can handle concurrent client requests very effectively and has good performance.
+It uses an event-driven non-blocking-based IO model: Whenever the node server is started, it initiates certain variables and functions and then waits for events to occur, whenever an event is detected a callback function is assigned to that particular event. Event-driven architecture makes the server highly scalable and it does not wait for an API to return data, it moves to the next API immediately for the next request. Non-blocking operation means the server will not block itself for one request. Non-blocking call only initiates the operation and the response is provided later, meanwhile, it can continue with other client requests.
+Example: If we get requests from two users A and B. With non-blocking IO we can initiate the request for A and then immediately for B without waiting for the response to the request of A. Hence we can say with the help of non-blocking IO we can eliminate the use of multi-threading since the node server can handle multiple requests simultaneously.
+
+Working of single-threaded non-blocking IO:
+
+
+
+When the client sends a request to the server, this request is called an event. These all requests get stored in an event queue. The single thread present in the event loop assigns this request to one of the threads present in the internal thread pool.
+This thread reads the client request, processes the request, performs any blocking IO operations if needed, and prepares the final response to be sent back to the server. The event loop sends this response back to the respective client.
+The event loop infinitely receives requests and processes them.
+There is no need for multiple threads because of Event Loop. Because of this event loop and concept of single threading, node.js uses lesser resources and memory.
+Reference: https://www.geeksforgeeks.org/introduction-to-nodejs/
+
+
+Never before seen offer on GeeksforGeeks Courses! Get up-to 75% off on all premium courses such as Full Stack Web Dev, Backend Dev, DSA for Interview and more. Avail discount now!
+Want to be a Software Developer or a Working Professional looking to enhance your Software Development Skills? Then, master the concepts of Full-Stack Development. Our Full Stack Development - React and Node.js Course will help you achieve this quickly. Learn everything from Front-End to Back-End Development with hands-on Projects and real-world examples. This course enables you to build scalable, efficient, dynamic web applications that stand out. Ready to become an expert in Full-Stack? Enroll Now and Start Creating the Future!
+
+Features 
+
+single threaded
+Non blocking 
+fast
+event driven
+Asynchronous
+
+Architeture
+javascript --> node standered library
+C/C++ --> Node Bindings
+        (socket,http,file system,etc)
+
+        chrome V8(js engine)
+        Async I/O (libuv)
+        Event loop (libuv)
+
+
+  Libuv
+
+  libuv is a high performance evented I/O library
+  It enforces an asynchronous,event-driven style of programming
+  It core jobs is to provide an event loop and call back based notifications of I/O and other activites
+.offers core utilites like timers,non-blocking networking support,aysnchronous file system access,child process etc
+Projects that use libuv  are Luvit,julia,pyuv and others
+
+javascript v8 engine
+
+V8 engine is an open source high-performance javascript
+engine developed by chromium project for the google chrome web browser
+It is written in C++.
+It compiles and executes JavaScript source code, handles memory 
+allocation for objects, and garbage collects objects it no longer need
+
+
+Performance
+Under high load (high concurrency), Node.js maintains high throughput 
+and low latency
+• At least three factors contribute to Node.js’s high performance:
+1. V8 JavaScript engine, upon which Node.js is based, is highly 
+optimized for performance by Google
+2. Node.js events are lightweight, while threads are heavyweight. 
+Consequently, Node.js is inherently more performant under load
+3. Node.js is container-ready, which simplifies the move to cloud and 
+microservices architectures
+
+potential Node.js Application Areas
+
+media 
+Social media
+Ecommerce
+Enterprise web apps
+Bckend/Api for mobile apps
+payment gateways
+
+use case 
+
+netflix --> node.js makes it easy to implement features end to end 
+reducing context switches and handsoff between frontend,backend and IOT
+
+prior to replacing java with node.js on the server side, the netflix UI team had to write many times and maintain seperate toolchains
+
+PROS 
+• Asynchronous event driven IO helps 
+concurrent request handling.
+• It's great to have common language on 
+both client and server.
+• NPM, the Node packaged modules 
+have already become huge, and still 
+growing.
+• Clean, Functional API.
+• Active and vibrant community, with 
+lots of code shared via github, etc.
+• Can stream big files.
+
+CONS
+• Any CPU intensive computation will 
+block Node.js responsiveness, so a 
+threaded platform is a better 
+approach. 
+• Every time using a callback ends up 
+with tons of nested callbacks.
+• Using Node.js with a relational 
+database is still quite a pain. Pick up 
+any other environment like Rails, 
+Django, or ASP.Net MVC if trying to 
+perform relational operations
+
+
+Verify installation and node installation using
+..)node –version and npm --version  Node.js provides with a REPL (readevaluate-print-loop) 
+► Test arbitrary JavaScript and 
+experiment and explore solutions to the 
+problem.
+► At each step, the REPL prints the 
+outcome of the last statement executed. 
+► The REPL does not execute input code 
+until all brackets have been balanced.
+
+REPL COMMANDS
+► .break - When in the process of inputting a multi-line expression, entering 
+the .break command (or pressing the <ctrl>-C key combination) will abort 
+further input or processing of that expression.
+► .clear - Resets the REPL context to an empty object and clears any multi-line 
+expression currently being input.
+► .exit - Close the I/O stream, causing the REPL to exit.
+► .help - Show this list of special commands.
+► .save - Save the current REPL session to a file: > .save ./file/to/save.js
+► .load - Load a file into the current REPL session. > .load ./file/to/load.js
+► .editor - Enter editor mode (<ctrl>-D to finish, <ctrl>-C to cancel
+
+var date=new Date().getHours();
+console.log(date +':00 is a good time to learn
+
+Understand that Node.js is a JavaScript runtime primarily used for creating scalable network 
+application
+
+ Modules types
+ ► Core modules 
+ o fs module 
+ o util module 
+ o process modules 
+ o cluster modules
+ ► Publishing the package
+ 
+Modules are node libraries that helps us to use code of one file as part of another file.
+► Module then acts as an api injected in to the bootstrap file.
+► A module encapsulates related code into a single unit of code. 
+► When creating a module, this can be interpreted as moving all related functions into a 
+file. 
+► Node modules run in their own scope so that they do not conflict with other modules. 
+Node relatedly provides global access to help facilitate module interoperability. 
+► Node.Js has a simple module loading system. In node.Js, files and modules are in one-toone correspondence (each file is treated as a separate module).
+require is an importer of 
+code from other locations
+exports bundles the code 
+in an object and allows it 
+to be reused
+
+const readline = require('readline'); 
+
+Importing read line module to read 
+input from console
+
+const prompt = readline.createInterface({
+ input: process.stdin,
+ output: process.stdout
+});
+interface for reading data from a stream one 
+line at a time
+
+prompt.question('What do you think of Node.js? ', (answer) => {
+ console.log(‘Thank you for your valuable feedback:’+ answer);
+ A statement or query to write to output, prepended to 
+the prompt and a callback function that is invoked 
+with the user's input in response to the query.
+
+prompt.close();
+});
+readline.Interface is closed because the interface 
+waits for data to be received on the input stream.
+
+
+$ node readline_demo.js
+What do you think of Node.js? good
+Thank you for your valuable feedback: good
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
 
 
 
